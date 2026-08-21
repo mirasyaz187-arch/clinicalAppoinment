@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
+    <title>Appointment Booking - Step 2</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#c9e6ff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-high": "#dce9ff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface-dim": "#ccdbf3",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "tertiary": "#525657",
+                        "outline": "#737686",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "surface-container": "#e6eeff",
+                        "on-secondary-container": "#004666",
+                        "primary": "#004ac6",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-surface": "#0d1c2e",
+                        "secondary-container": "#39b8fd",
+                        "tertiary-container": "#6b6e70",
+                        "on-background": "#0d1c2e",
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d5e3fc",
+                        "surface-variant": "#d5e3fc",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "tertiary-fixed": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "inverse-primary": "#b4c5ff",
+                        "secondary": "#006591",
+                        "on-surface-variant": "#434655",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "primary-container": "#2563eb",
+                        "background": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#eff1f3",
+                        "on-primary-fixed": "#00174b",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#233144",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "section-gap": "32px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "container-margin": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pb-safe">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md">
+        <div class="flex justify-between items-center px-container-margin h-16 w-full">
+            <button class="text-primary hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+            </button>
+            <h1 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Book Appointment</h1>
+            <div class="w-6 h-6"></div>
+        </div>
+        <div class="px-container-margin pb-4 pt-2">
+            <div class="flex items-center justify-center space-x-2">
+                <div
+                    class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-sm font-bold">
+                    1</div>
+                <div class="w-12 h-1 bg-primary"></div>
+                <div
+                    class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-sm font-bold ring-4 ring-primary/20">
+                    2</div>
+                <div class="w-12 h-1 bg-outline-variant"></div>
+                <div
+                    class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-label-sm font-bold">
+                    3</div>
+            </div>
+            <p class="text-center font-label-md text-label-md text-primary mt-2">Step 2: Select Date &amp; Time</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-[140px] px-container-margin pb-[100px] flex flex-col gap-section-gap">
+        <!-- Date Selection -->
+        <section class="flex flex-col gap-stack-md">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">Select Date</h2>
+            <div class="flex gap-3 overflow-x-auto hide-scrollbar py-2 -mx-container-margin px-container-margin"
+                id="dateContainer">
+                <button type="button"
+                    class="date-btn flex flex-col items-center justify-center min-w-[72px] h-[90px] rounded-xl bg-primary text-on-primary shadow-md shadow-primary/20 scale-105"
+                    data-date="13 Tue">
+                    <span class="font-label-sm text-label-sm uppercase">Tue</span>
+                    <span class="font-headline-md text-headline-md mt-1">13</span>
+                </button>
+                <button type="button"
+                    class="date-btn flex flex-col items-center justify-center min-w-[72px] h-[90px] rounded-xl bg-surface border border-outline-variant"
+                    data-date="14 Wed">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Wed</span>
+                    <span class="font-headline-md text-headline-md text-on-surface mt-1">14</span>
+                </button>
+                <button type="button"
+                    class="date-btn flex flex-col items-center justify-center min-w-[72px] h-[90px] rounded-xl bg-surface border border-outline-variant"
+                    data-date="15 Thu">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Thu</span>
+                    <span class="font-headline-md text-headline-md text-on-surface mt-1">15</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Time Selection -->
+        <section class="flex flex-col gap-stack-lg">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+                Available Times
+            </h2>
+            <div class="grid grid-cols-3 gap-3" id="timeContainer">
+                <button type="button"
+                    class="time-btn py-3 rounded-lg border border-outline-variant text-on-surface font-label-md text-label-md bg-surface">09:00
+                    AM</button>
+                <button type="button"
+                    class="time-btn py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md shadow-primary/20">10:30
+                    AM</button>
+                <button type="button"
+                    class="time-btn py-3 rounded-lg border border-outline-variant text-on-surface font-label-md text-label-md bg-surface">01:30
+                    PM</button>
+            </div>
+        </section>
+
+        <!-- Form Details -->
+        <section class="flex flex-col gap-stack-md bg-white p-6 rounded-xl shadow-sm border border-outline-variant/20">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+                Patient Details
+            </h2>
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Full Name</label>
+                    <input id="fullName"
+                        class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary font-body-md text-on-surface bg-surface-bright"
+                        placeholder="Ahmad Bin Ali" type="text" />
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant">IC / Passport Number</label>
+                    <input id="idNumber"
+                        class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary font-body-md text-on-surface bg-surface-bright"
+                        placeholder="010203-07-1234" type="text" />
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Phone Number</label>
+                    <input id="phone"
+                        class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary font-body-md text-on-surface bg-surface-bright"
+                        placeholder="012-3456789" type="tel" />
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Reason for Visit</label>
+                    <select id="reason"
+                        class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary font-body-md text-on-surface bg-surface-bright">
+                        <option value="General Checkup">General Checkup</option>
+                        <option value="Consultation">Consultation</option>
+                        <option value="Follow-up">Follow-up</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Confirm Button -->
+    <div
+        class="fixed bottom-0 left-0 w-full p-4 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 z-50">
+        <button id="btnConfirm" type="button"
+            class="w-full h-[52px] bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+            <span>Confirm &amp; Save Record</span>
+            <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+        </button>
+    </div>
+
+    <!-- Firebase App & Firestore Compatibility SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase App & Firestore Compatibility SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "firebase/app";
+        import { getAnalytics } from "firebase/analytics";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCDTVd8i8PDSCttPXdfazC_p7hhrdz0Pk",
+            authDomain: "clinicalappoinment-10b45.firebaseapp.com",
+            projectId: "clinicalappoinment-10b45",
+            storageBucket: "clinicalappoinment-10b45.firebasestorage.app",
+            messagingSenderId: "558271201174",
+            appId: "1:558271201174:web:bd060d0ec6fa8d934da7b7",
+            measurementId: "G-Z04H81H0JV"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        // 2. Inisialisasi Firebase & Firestore
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
+        // Elak sambungan terputus jika guna Wi-Fi/Network terhad
+        db.settings({ experimentalForceLongPolling: true });
+
+        let selectedDate = "13 Tue";
+        let selectedTime = "10:30 AM";
+
+        // Logik Pilih Masa
+        const timeBtns = document.querySelectorAll('.time-btn');
+        timeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                timeBtns.forEach(b => {
+                    b.className = "time-btn py-3 rounded-lg border border-outline-variant text-on-surface font-label-md text-label-md bg-surface";
+                });
+                btn.className = "time-btn py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md shadow-primary/20";
+                selectedTime = btn.innerText.trim();
+            });
+        });
+
+        // Logik Simpan Data
+        document.getElementById('btnConfirm').addEventListener('click', async () => {
+            const fullName = document.getElementById('fullName').value.trim();
+            const idNumber = document.getElementById('idNumber').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const reason = document.getElementById('reason').value;
+
+            if (!fullName || !idNumber || !phone) {
+                alert("Sila isi semua maklumat pesakit!");
+                return;
+            }
+
+            const btn = document.getElementById('btnConfirm');
+            btn.disabled = true;
+            btn.innerText = "Menyimpan Rekod...";
+
+            try {
+                const queueNo = "A-" + Math.floor(100 + Math.random() * 900);
+
+                // Simpan ke Koleksi "appointments" dalam Firestore
+                const docRef = await db.collection("appointments").add({
+                    fullName: fullName,
+                    idNumber: idNumber,
+                    phone: phone,
+                    reason: reason,
+                    appointmentDate: selectedDate,
+                    appointmentTime: selectedTime,
+                    queueNumber: queueNo,
+                    status: "Completed",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                localStorage.setItem("latestAppointmentId", docRef.id);
+
+                alert("Rekod berjaya disimpan!");
+                window.location.href = "dashboard.html";
+
+            } catch (error) {
+                console.error("Ralat menyimpan:", error);
+                alert("Gagal simpan: " + error.message);
+                btn.disabled = false;
+                btn.innerText = "Confirm & Save Record";
+            }
+        });
+    </script>
+</body>
+
+</html>
